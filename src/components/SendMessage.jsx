@@ -1,12 +1,32 @@
 import React, { useState } from 'react'
 import SendIcon from '@mui/icons-material/Send';
+import { UserAuth } from '../context/AuthContext';
+import { addDoc, serverTimestamp, collection } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const SendMessage = () => {
   const [value, setValue] = useState('')
-  const handleSendMessege = (e) => {
+  const {currentUser} = UserAuth()
+  const handleSendMessege = async (e) => {
     e.preventDefault()
+    if(value.trim() === '') {
+      alert('Enter valid message!')
+      return
+    }
+    try {
+      const {uid, displayName, photoURL} = currentUser
+      await addDoc(collection(db, 'the first message'), {
+        user_message: value,
+        user: displayName,
+        user_avatar: photoURL,
+        createdAt: serverTimestamp(),
+        uid
+      })
+    } catch(error) {
+      console.log('出現故障error')
+      console.log(error)
+    }
     setValue('')
-    console.log(value)
   }
   return (
     <div data-theme='' className='bg-gray-200 dark:bg-gray-700 bottom-0 py-10 fixed w-full shadow-lg'>

@@ -1,32 +1,33 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Message from './Message'
-
+import { db } from '../firebase';
+import { collection, query, onSnapshot, orderBy, limit } from "firebase/firestore";
 
 const ChatBox = () => {
-  const messages = [
-    {
-      id: 1,
-      user: 'python',
-      user_message: 'hello world!',
-      user_profile: ''
-    },
-    {
-      id: 2,
-      user: 'ame',
-      user_message: 'ground pound ur mom!'
-    },
-    {
-      id: 1,
-      user: 'kirano',
-      user_message: '???',
-      user_profile: ''
-    },
-  ]
+  const [messages, setMessages] = useState([])
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({behavior: 'smooth'})
+  }
+  useEffect(scrollToBottom, [messages])
+  const messagesEndRef = useRef()
+  useEffect(() => {
+    const q = query(collection(db, "the first message"), orderBy('createdAt'), limit(50));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const messages = [];
+      querySnapshot.forEach((doc) => {
+        messages.push({...doc.data(), id: doc.id});
+      });
+      setMessages(messages)
+      console.log(messages)
+    });
+    return () => unsubscribe
+  }, [])
   return (
     <div className='pb-44 pt-20 container mx-auto px-[80px] dark:text-white '>
-      {messages.map(message => (
-        <Message key={message.id} message={message}/>
+      {messages.map((message) => (
+        <Message key={message.id} message={message} />
       ))}
+      <div ref={messagesEndRef}></div>
     </div>
   )
 }
