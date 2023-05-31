@@ -7,18 +7,15 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "put_your_fucking_apiKey",
+  apiKey: "AIzaSyBeqTg0XL4nQK78UgeMPmrEL0oFbVvI0Cs",
   authDomain: "bell-b451b.firebaseapp.com",
   projectId: "bell-b451b",
   storageBucket: "bell-b451b.appspot.com",
-  messagingSenderId: "bruh is not a id",
-  appId: "put_your_fucking_appId"
+  messagingSenderId: "69556658272",
+  appId: "1:69556658272:web:6e5ea64d1f75ae13ce2305"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
-<<<<<<< HEAD
 export const db = getFirestore(app);
-=======
->>>>>>> a449461964eb62b36047309a8002a727fa5ddddc
