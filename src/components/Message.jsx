@@ -12,7 +12,7 @@ const Message = ({message}) => {
             <img src={message.user_avatar}/>
           </div>
         </div>
-        <div className="chat-header">
+        <div className="chat-header dark:text-gray-400 text-gray-500">
           {message.user}
         </div>
         <div className="chat-bubble dark:bg-gradient-to-r dark:bg-[#99bddf] from-[#99BDDF] to-[#CBBBD6] text-white dark:text-gray-700">{message.user_message} </div>
