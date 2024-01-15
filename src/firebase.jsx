@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBeqTg0XL4nQK78UgeMPmrEL0oFbVvI0Cs",
-  authDomain: "bell-b451b.firebaseapp.com",
-  projectId: "bell-b451b",
-  storageBucket: "bell-b451b.appspot.com",
-  messagingSenderId: "69556658272",
-  appId: "1:69556658272:web:6e5ea64d1f75ae13ce2305"
+  apiKey: "api_key",
+  authDomain: "projectId.firebaseapp.com",
+  projectId: "projectId",
+  storageBucket: "storageBucket",
+  messagingSenderId: "messagingSenderId",
+  appId: "appId"
 };
 
 // Initialize Firebase
